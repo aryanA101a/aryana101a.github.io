@@ -197,7 +197,7 @@ header li a:hover {
 }
 
 .experience p.period {
-    display: none;
+    display: inline;
 }
 
 .experience p {
