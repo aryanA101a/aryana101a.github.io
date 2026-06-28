@@ -10,11 +10,16 @@ import {
 } from "@shikijs/transformers";
 import { transformerFileName } from "./src/utils/transformers/fileName";
 import { SITE } from "./src/config";
+import mermaid from 'astro-mermaid';
 
 // https://astro.build/config
 export default defineConfig({
   site: SITE.website,
   integrations: [
+    mermaid({
+     theme: 'forest',
+     autoTheme: true
+   }),
     sitemap({
       filter: page => SITE.showArchives || !page.endsWith("/archives"),
     }),
