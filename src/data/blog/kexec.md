@@ -4,7 +4,7 @@ author: Aryan Arora
 pubDatetime: 2026-06-27T10:34:59Z
 slug: kexec-eh
 featured: false
-draft: false
+draft: true
 tags:
   - UNIX
   - Linux
