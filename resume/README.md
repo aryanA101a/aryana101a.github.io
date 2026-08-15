@@ -1,4 +1,4 @@
-# hosted-resume
+# resume
 
 
 ## Cloudflare Pages
@@ -10,17 +10,19 @@ Use:
 Framework preset:       None
 Build command:          make cloudflare
 Build output directory: dist
-Root directory:         /
+Root directory:         resume
 Production branch:      main
+Deploy command:         add a space
 ```
 
 
-On every deployment Cloudflare will:
+Set these build environment variables in Cloudflare Pages:
 
-1. bootstrap the pinned Typst compiler;
-2. compile `resume.typ` to `dist/resume.pdf`;
-3. compile the same `resume.typ` to `dist/index.html` using Typst's HTML target;
-4. publish `dist/`.
+```text
+PHONE_NUMBER=<your phone number>
+SKIP_DEPENDENCY_INSTALL=1
+```
+
 
 ## Local build
 
@@ -36,9 +38,8 @@ from the hosted HTML resume:
 PHONE_NUMBER="(+91) 1234567890" make site
 ```
 
-Set the same variable in the Cloudflare Pages build environment if the PDF
-should include a phone number. Leave it unset to omit the number from both
-artifacts.
+
+The phone number is included in the PDF and omitted from the hosted HTML resume.
 
 By default this downloads Typst 0.15.1 into `.tools/bin/typst`. To use an already-installed Typst instead:
 
