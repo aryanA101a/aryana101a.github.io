@@ -23,7 +23,7 @@ Systems software engineer focused on low-level software across bootloaders, kern
   title: "Google Summer of Code Contributor",
   company: "The FreeBSD Project",
   location: "Remote",
-  dates: dates-helper(start-date: "May 2026", end-date: "Present"),
+  dates: dates-helper(start-date: "May 2026", end-date: "Sep 2026"),
 )
 - Integrated musl and developed a lightweight abstraction over the Linux networking ABI, including resolver support for kboot.
 - Built an HTTP/HTTPS client over Linux sockets to fetch boot artifacts.
@@ -33,7 +33,7 @@ Systems software engineer focused on low-level software across bootloaders, kern
   title: "Software Development Engineer",
   company: "VisCommerce",
   location: "Remote",
-  dates: dates-helper(start-date: "Jun 2024", end-date: "Present"),
+  dates: dates-helper(start-date: "Jun 2024", end-date: "Sep 2026"),
 )
 - Architected authentication, IAM, storage, and state-restoration systems for Spaces365, a 3D room configurator.
 - Designed Redux state orchestration connecting application flows with the Three.js runtime.
