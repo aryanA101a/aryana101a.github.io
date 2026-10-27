@@ -72,11 +72,15 @@ make clean        # remove generated output and downloaded tools
 
 ## Theme
 
-The PDF uses the unmodified Coral CV 0.1.0 template, including its warm paper,
-coral accents, and default New Computer Modern font. The HTML adapter uses the
-same palette, bundled New Computer Modern fonts, and matching desktop entry layouts.
-On narrow screens, metadata stacks for readability. Font files and their license
-are preserved in `vendor/new-computer-modern/` and copied into the HTML build.
+The customized PDF and HTML layouts use the Coral CV color palette:
+
+- background: `#F4F3EE`
+- text: `#2F2F2D`
+- muted text: `#6F6E69`
+- accent: `#DE5D3E`
+- dividers: `#DEDDDA`
+
+The PDF uses Libertinus Serif; the HTML uses the original Georgia serif stack.
 
 ## Typst HTML note
 
@@ -84,5 +88,5 @@ Typst HTML export is currently experimental and requires the `html` compiler fea
 
 ## Coral CV
 
-The original `@preview/coral-cv:0.1.0` source is vendored unchanged in
-`vendor/coral-cv/lib.typ`. The HTML adapter delegates PDF rendering to it. The upstream MIT-0 license is preserved in `vendor/coral-cv/LICENSE`.
+The paged layout is derived from `@preview/coral-cv:0.1.0` and customized locally.
+The upstream MIT-0 license is preserved in `template-fork/coral-cv/LICENSE`.

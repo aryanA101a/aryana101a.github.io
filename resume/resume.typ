@@ -4,6 +4,8 @@
 
 #show: resume.with(
   author: "Aryan Arora",
+  role: "Systems Software Engineer",
+  font: "Libertinus Serif",
   phone: phone-number,
   email: "aryanarora.w1@gmail.com",
   personal-site: "aryanarora.de",
