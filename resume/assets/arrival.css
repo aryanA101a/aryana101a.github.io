@@ -1,0 +1,148 @@
+#orbital-arrival {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483647;
+  visibility: hidden;
+  overflow: hidden;
+  background: radial-gradient(
+    circle at 50% 44%,
+    #000 0 5%,
+    #1d4ed8 14%,
+    #080b18 34%,
+    #020308 72%
+  );
+  clip-path: circle(150vmax at 50% 44%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+#orbital-arrival::before,
+#orbital-arrival::after {
+  position: absolute;
+  inset: -45vmax;
+  border-radius: 50%;
+  content: "";
+}
+
+#orbital-arrival::before {
+  background: repeating-conic-gradient(
+    from 15deg at 50% 44%,
+    transparent 0 7deg,
+    rgb(37 99 235 / 22%) 8deg 9deg,
+    transparent 10deg 18deg
+  );
+  opacity: 0.34;
+  filter: url("#arrival-wave-distortion");
+  transform: rotate(75deg) scale(1.7);
+}
+
+#orbital-arrival::after {
+  background: repeating-radial-gradient(
+    circle at 50% 44%,
+    transparent 0 7vmin,
+    rgb(96 165 250 / 15%) 7.2vmin 7.5vmin,
+    transparent 7.7vmin 14vmin
+  );
+  filter: url("#arrival-wave-distortion");
+  opacity: 0.68;
+}
+
+#orbital-arrival-filter {
+  position: fixed;
+  pointer-events: none;
+}
+
+html[data-orbital-arrival] {
+  background: #020308;
+}
+
+html[data-orbital-arrival] body {
+  overflow: hidden;
+}
+
+html[data-orbital-arrival="pending"] body > :not(#orbital-arrival) {
+  visibility: hidden;
+}
+
+html[data-orbital-arrival] #orbital-arrival {
+  visibility: visible;
+  opacity: 1;
+}
+
+html[data-orbital-arrival="active"] #orbital-arrival {
+  animation: orbital-arrival-release 1200ms cubic-bezier(0.65, 0, 0.18, 1)
+    forwards;
+}
+
+html[data-orbital-arrival="active"] #orbital-arrival::before {
+  animation: orbital-arrival-spin 1200ms cubic-bezier(0.4, 0, 0.15, 1)
+    forwards;
+}
+
+html[data-orbital-arrival="active"] #orbital-arrival::after {
+  animation: orbital-arrival-rings 1200ms cubic-bezier(0.12, 0.45, 0.18, 1)
+    forwards;
+}
+
+@keyframes orbital-arrival-release {
+  0% {
+    visibility: visible;
+    clip-path: circle(150vmax at 50% 44%);
+    filter: brightness(0.72);
+  }
+  100% {
+    visibility: visible;
+    clip-path: circle(0 at 50% 44%);
+    filter: brightness(1.35);
+  }
+}
+
+@keyframes orbital-arrival-spin {
+  from {
+    opacity: 0.34;
+    transform: rotate(75deg) scale(1.7);
+  }
+  to {
+    opacity: 0;
+    transform: rotate(178deg) scale(0.18) skew(8deg, -5deg);
+  }
+}
+
+@keyframes orbital-arrival-rings {
+  from {
+    opacity: 0.68;
+    transform: scale(1.15) rotate(0deg);
+  }
+  55% {
+    opacity: 0.45;
+    transform: scale(0.62) rotate(-8deg);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.08) rotate(14deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-orbital-arrival="active"] #orbital-arrival {
+    animation: orbital-arrival-fade 140ms ease-out forwards;
+  }
+
+  html[data-orbital-arrival="active"] #orbital-arrival::before,
+  html[data-orbital-arrival="active"] #orbital-arrival::after {
+    animation: none;
+  }
+}
+
+@keyframes orbital-arrival-fade {
+  from {
+    visibility: visible;
+    clip-path: none;
+    opacity: 1;
+  }
+  to {
+    visibility: visible;
+    clip-path: none;
+    opacity: 0;
+  }
+}

@@ -1,124 +1,135 @@
-:root {
-  --paper: #f8fafc;
-  --ink: #111827;
-  --muted: #64748b;
-  --accent: #2563eb;
-  --line: #e2e8f0;
-  --content: 860px;
+@font-face {
+  font-family: "New Computer Modern";
+  src: url("fonts/NewCM10-Regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
 }
-
+@font-face {
+  font-family: "New Computer Modern";
+  src: url("fonts/NewCM10-Bold.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "New Computer Modern";
+  src: url("fonts/NewCM10-Italic.woff2") format("woff2");
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "New Computer Modern";
+  src: url("fonts/NewCM10-BoldItalic.woff2") format("woff2");
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+}
+:root {
+  --paper: #f4f3ee;
+  --ink: #2f2f2d;
+  --accent: #de5d3e;
+  --line: #deddda;
+}
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
 body {
   margin: 0;
   background: var(--paper);
   color: var(--ink);
-  font-family: Georgia, "Times New Roman", serif;
-  line-height: 1.42;
-  -webkit-font-smoothing: antialiased;
+  font-family: "New Computer Modern", serif;
+  font-size: 10pt;
+  line-height: 1.35;
+  font-variant-ligatures: none;
 }
 main.resume {
-  width: min(calc(100% - 40px), var(--content));
+  width: min(100%, 210mm);
   margin: 0 auto;
-  padding: 52px 0 72px;
-}
-.resume-header {
-  padding-bottom: 18px;
-  border-bottom: 1px solid var(--line);
+  padding: 0.5in;
 }
 h1 {
-  margin: 0;
-  font-size: clamp(2rem, 5vw, 3.15rem);
-  font-weight: 500;
-  letter-spacing: -0.035em;
-  line-height: 1;
-}
-.role {
-  margin: 9px 0 13px;
+  margin: 0 0 5pt;
   color: var(--accent);
-  font-size: 1.04rem;
+  font-size: 20pt;
+  line-height: 1.2;
   font-weight: 700;
 }
+.role { margin: 0 0 5pt; color: var(--accent); font-weight: 700; }
 .contact {
   display: flex;
   flex-wrap: wrap;
-  gap: 5px 15px;
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 0.84rem;
+  align-items: baseline;
+  gap: 2pt 0;
+  font-size: 9pt;
 }
-a {
+.contact > * { flex-shrink: 0; }
+.contact > * + *::before {
+  content: "|";
+  display: inline-block;
+  margin: 0 8pt;
+  color: var(--ink);
+  text-decoration: none;
+}
+a { color: var(--accent); text-decoration: underline; text-underline-offset: 1.5pt; }
+h3 {
+  margin: 9pt 0 5pt;
+  padding: 0 0 1pt;
+  border-bottom: 0.75pt solid var(--line);
   color: var(--accent);
-  text-decoration-thickness: 1px;
-  text-underline-offset: 2px;
+  font-size: 12pt;
+  line-height: 1.25;
+  font-variant-caps: small-caps;
+  font-weight: 700;
 }
-.contact a { text-decoration: none; }
-a:hover { text-decoration: underline; }
-h2 {
-  margin: 27px 0 12px;
-  color: var(--accent);
-  font-size: 0.88rem;
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  padding-bottom: 5px;
-  border-bottom: 1px solid var(--line);
-}
-p { margin: 0; }
+p { margin: 0; text-align: justify; }
 .entry-head {
   display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 5px 20px;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: baseline;
-  margin-top: 17px;
+  column-gap: 12pt;
+  margin-top: 6pt;
+  break-inside: avoid;
 }
-h2 + .entry-head { margin-top: 0; }
-.entry-title { font-weight: 700; font-size: 1.02rem; }
-.entry-meta, .dates {
-  color: var(--muted);
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 0.81rem;
-}
-.dates { white-space: nowrap; }
-ul { margin: 7px 0 0 20px; padding: 0; }
-li { margin: 3px 0; }
+h3 + .entry-head { margin-top: 0; }
+.entry-title { font-weight: 700; }
+.entry-right, .entry-detail { text-align: right; }
+.entry-right { white-space: nowrap; }
+.entry-meta, .entry-detail { font-size: inherit; }
+.project-source { margin-left: 0.45em; font-weight: 400; }
+ul { margin: 0 0 0 1.55em; padding: 0; }
+li { margin: 0; padding-left: 0; text-align: justify; }
+ul + p { margin-top: 5pt; }
 strong { font-weight: 700; }
 .pdf-link {
   position: fixed;
-  right: 22px;
-  bottom: 22px;
-  padding: 9px 13px;
+  right: 20px;
+  bottom: 20px;
+  padding: 8px 12px;
   border: 1px solid var(--accent);
-  border-radius: 999px;
-  background: rgb(248 250 252 / 95%);
-  color: var(--accent);
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 0.8rem;
-  font-weight: 700;
+  background: var(--paper);
+  font-size: 10pt;
   text-decoration: none;
-  box-shadow: 0 4px 18px rgb(15 23 42 / 8%);
 }
-
+.pdf-link:hover { text-decoration: underline; }
 @media (max-width: 620px) {
-  main.resume {
-    width: min(calc(100% - 28px), var(--content));
-    padding: 42px 18px calc(104px + env(safe-area-inset-bottom));
-  }
-  .entry-head { grid-template-columns: 1fr; gap: 1px; }
-  .dates { white-space: normal; }
-  .pdf-link {
-    right: 14px;
-    bottom: calc(14px + env(safe-area-inset-bottom));
-    z-index: 10;
-  }
+  body { font-size: 11pt; }
+  main.resume { padding: 24px 20px calc(80px + env(safe-area-inset-bottom)); }
+  .contact { row-gap: 4pt; }
+  .contact > * { overflow-wrap: anywhere; }
+  .contact > * + *::before { margin: 0 5pt; }
+  h3 { margin-top: 12pt; }
+  p, li { text-align: left; }
+  .entry-head { column-gap: 8pt; row-gap: 1pt; }
+  .entry-right { white-space: normal; }
+  .entry-head:not(.project) { grid-template-columns: minmax(0, 1fr); }
+  .entry-head:not(.project) .entry-meta { grid-row: 2; }
+  .entry-right, .entry-detail { text-align: left; }
+  .project .entry-right { text-align: right; }
+  .pdf-link { position: static; display: table; margin-top: 20pt; }
 }
-
 @media print {
-  @page { size: A4; margin: 14mm 16mm; }
-  body { background: white; font-size: 9.5pt; }
+  @page { size: A4; margin: 0.5in; }
+  body { font-size: 10pt; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
   main.resume { width: 100%; padding: 0; }
   .pdf-link { display: none; }
-  a { color: inherit; text-decoration: none; }
-  h2 { margin-top: 18px; }
-  .entry-head { break-inside: avoid; }
 }

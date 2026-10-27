@@ -5,8 +5,10 @@ PHONE_NUMBER ?=
 export PHONE_NUMBER
 
 SRC := resume.typ
-TEMPLATE := template-fork/coral-cv/lib.typ
+TEMPLATE := template-fork/coral-cv/lib.typ vendor/coral-cv/lib.typ
 STYLE := template-fork/coral-cv/style.css
+FONTS := $(wildcard vendor/new-computer-modern/*.woff2)
+FONT_LICENSE := vendor/new-computer-modern/License.txt
 DIST := dist
 PDF := $(DIST)/Aryan_Arora_Resume.pdf
 HTML := $(DIST)/index.html
@@ -39,8 +41,10 @@ $(PDF): FORCE $(SRC) $(TEMPLATE) $(STYLE)
 
 html: tools $(HTML) $(HEADERS)
 
-$(HTML): FORCE $(SRC) $(TEMPLATE) $(STYLE)
+$(HTML): FORCE $(SRC) $(TEMPLATE) $(STYLE) $(FONTS) $(FONT_LICENSE)
 	@mkdir -p $(DIST)
+	@mkdir -p $(DIST)/fonts
+	cp $(FONTS) $(FONT_LICENSE) $(DIST)/fonts/
 	$(TYPST) compile --input "phone=$$PHONE_NUMBER" --features html --format html $(SRC) $(HTML)
 
 $(HEADERS): _headers
@@ -60,9 +64,9 @@ check:
 	@$(MAKE) --no-print-directory -n site >/dev/null
 	@test ! -e resume.html
 	@grep -q -- '--features html --format html' Makefile
-	@grep -q 'target() == "html"' $(TEMPLATE)
+	@grep -q 'target() == "html"' template-fork/coral-cv/lib.typ
 	@test -f $(STYLE)
-	@grep -q 'html.style(read("style.css"))' $(TEMPLATE)
+	@grep -q 'html.style(read("style.css"))' template-fork/coral-cv/lib.typ
 	@echo "Project checks passed."
 
 clean:

@@ -4,8 +4,6 @@
 
 #show: resume.with(
   author: "Aryan Arora",
-  role: "Systems Software Engineer",
-  font: "Libertinus Serif",
   phone: phone-number,
   email: "aryanarora.w1@gmail.com",
   personal-site: "aryanarora.de",
@@ -21,7 +19,7 @@ Systems software engineer focused on low-level software across bootloaders, kern
 
 #work(
   title: "Google Summer of Code Contributor",
-  company: "The FreeBSD Project",
+  company: [The FreeBSD Project · #link("https://wiki.freebsd.org/SummerOfCode2026Projects/AddNetworkingSupportToKboot")[Project details]],
   location: "Remote",
   dates: dates-helper(start-date: "May 2026", end-date: "Sep 2026"),
 )
@@ -49,10 +47,20 @@ Systems software engineer focused on low-level software across bootloaders, kern
 
 == Open Source
 
-- #link("https://github.com/openzim/libzim/pull/861")[Made checksum verification 2.6× faster in libzim.]
-- #link("https://github.com/kiwix/libkiwix/pull/1074")[Added IPv6 support to libkiwix.]
+- #link("https://github.com/openzim/libzim/pull/861")[*libzim*]: Made checksum verification about 2.6× faster in benchmarks.
+- #link("https://github.com/kiwix/libkiwix/pull/1074")[*libkiwix*]: Added IPv6 support to the HTTP daemon.
+
+#link("https://aryanarora.de/opensource-contributions/")[All contributions]
 
 == Projects
+
+#project(
+  name: "roro-vmm",
+  role: "C, Linux KVM",
+  url: "github.com/aryanA101a/roro-vmm",
+)
+- Built a minimal KVM-based virtual machine monitor in C that boots an x86-64 Linux kernel and initramfs through the Linux 32-bit boot protocol.
+- Implemented guest memory layout, E820 memory maps, vCPU initialization, and UART emulation for an interactive serial console.
 
 #project(
   name: "lulu",

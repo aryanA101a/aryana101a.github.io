@@ -1,22 +1,25 @@
 # resume
 
 
-## Cloudflare Pages
+## Cloudflare Workers Builds
 
 
 Use:
 
 ```text
-Framework preset:       None
 Build command:          make cloudflare
-Build output directory: dist
 Root directory:         resume
 Production branch:      main
-Deploy command:         add a space
+Deploy command:         npx wrangler deploy --config ./wrangler.toml --assets ./dist
 ```
 
+Cloudflare Workers Builds runs the build and deploy commands separately. A blank
+deploy command can report a successful build without updating the live resume.
+In this setup both commands start in `resume/`. Explicitly passing the config
+and asset directory avoids Wrangler resolving `dist` against the repository root.
 
-Set these build environment variables in Cloudflare Pages:
+
+Set these build environment variables in Cloudflare Workers Builds:
 
 ```text
 PHONE_NUMBER=<your phone number>
@@ -69,13 +72,11 @@ make clean        # remove generated output and downloaded tools
 
 ## Theme
 
-Slate + Blue:
-
-- background: `#F8FAFC`
-- text: `#111827`
-- muted text: `#64748B`
-- accent: `#2563EB`
-- dividers: `#E2E8F0`
+The PDF uses the unmodified Coral CV 0.1.0 template, including its warm paper,
+coral accents, and default New Computer Modern font. The HTML adapter uses the
+same palette, bundled New Computer Modern fonts, and matching desktop entry layouts.
+On narrow screens, metadata stacks for readability. Font files and their license
+are preserved in `vendor/new-computer-modern/` and copied into the HTML build.
 
 ## Typst HTML note
 
@@ -83,4 +84,5 @@ Typst HTML export is currently experimental and requires the `html` compiler fea
 
 ## Coral CV
 
-The paged layout is derived from `@preview/coral-cv:0.1.0` and vendored locally. The upstream MIT-0 license is preserved in `vendor/coral-cv/LICENSE`.
+The original `@preview/coral-cv:0.1.0` source is vendored unchanged in
+`vendor/coral-cv/lib.typ`. The HTML adapter delegates PDF rendering to it. The upstream MIT-0 license is preserved in `vendor/coral-cv/LICENSE`.
