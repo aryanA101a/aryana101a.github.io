@@ -69,7 +69,7 @@ Systems software engineer focused on low-level software across bootloaders, kern
   role: "Go",
   url: "github.com/aryanA101a/lulu",
 )
-- Implemented an LC-3 virtual machine in Go with instruction decoding, registers, memory-mapped I/O, and support for the complete instruction set.
+- Implemented an LC-3 virtual machine in Go with instruction decoding, registers,and memory-mapped I/O.
 - Implemented TRAP routines for system calls and terminal I/O.
 
 #project(
