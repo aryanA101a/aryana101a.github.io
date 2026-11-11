@@ -63,12 +63,35 @@ Then open `http://localhost:8000`.
 ```sh
 make pdf          # resume.typ -> dist/resume.pdf
 make html         # resume.typ -> dist/index.html
-make site         # build both
+make site         # build HTML and PDF for both resume variants
 make cloudflare   # Cloudflare Pages build target
 make serve        # build + serve dist/ locally
 make check        # project sanity checks
 make clean        # remove generated output and downloaded tools
 ```
+
+## Backend-focused resume
+
+`backend.typ` is a secondary resume for backend and product engineering roles.
+It emphasizes authentication, IAM, storage, networking, Go, and performance work.
+The original systems resume remains in `resume.typ`.
+
+```sh
+make backend             # Build the secondary HTML and PDF
+make backend-serve       # Build both versions + serve on port 8000
+PHONE_NUMBER="(+91) 1234567890" make backend
+```
+
+Outputs are `dist/backend/index.html` and
+`dist/backend/Aryan_Arora_Backend_Resume.pdf`. The phone number is included only
+in the PDF. Both versions share the template and HTML styles; the secondary
+version has its own PDF download link.
+
+The default `site` and `cloudflare` targets build both versions. The HTML pages
+include a text link to the other version at the top-left of the page, with a
+separate PDF download for each.
+The systems version is available at `/` and the backend version at `/backend/`
+(locally, `http://localhost:8000/backend/`).
 
 ## Theme
 

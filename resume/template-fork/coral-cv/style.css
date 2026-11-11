@@ -20,7 +20,7 @@ body {
 main.resume {
   width: min(calc(100% - 40px), var(--content));
   margin: 0 auto;
-  padding: 52px 0 72px;
+  padding: 76px 0 72px;
 }
 .resume-header {
   padding-bottom: 18px;
@@ -53,6 +53,22 @@ a {
 }
 .contact a { text-decoration: none; }
 a:hover { text-decoration: underline; }
+.resume-variants {
+  position: absolute;
+  top: 20px;
+  left: 22px;
+  max-width: calc(100% - 44px);
+  font-size: 0.9rem;
+}
+.resume-variants a {
+  color: var(--muted);
+  text-decoration-color: var(--line);
+}
+.resume-variants a:hover,
+.resume-variants a:focus-visible {
+  color: var(--accent);
+  text-decoration-color: currentColor;
+}
 h3 {
   margin: 27px 0 12px;
   color: var(--accent);
@@ -102,7 +118,7 @@ strong { font-weight: 700; }
 @media (max-width: 620px) {
   main.resume {
     width: min(calc(100% - 28px), var(--content));
-    padding: 42px 18px calc(104px + env(safe-area-inset-bottom));
+    padding: 72px 18px calc(104px + env(safe-area-inset-bottom));
   }
   .entry-head { grid-template-columns: 1fr; gap: 1px; }
   .dates { white-space: normal; }
@@ -117,7 +133,7 @@ strong { font-weight: 700; }
   @page { size: A4; margin: 14mm 16mm; }
   body { background: white; font-size: 9.5pt; }
   main.resume { width: 100%; padding: 0; }
-  .pdf-link { display: none; }
+  .pdf-link, .resume-variants { display: none; }
   a { color: inherit; text-decoration: none; }
   h3 { margin-top: 18px; }
   .entry-head { break-inside: avoid; }

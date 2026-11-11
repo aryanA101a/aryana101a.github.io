@@ -140,6 +140,8 @@
   personal-site: "",
   orcid: "",
   contact-lines: (),
+  pdf-file: "Aryan_Arora_Resume.pdf",
+  variant: "systems",
   lang: "en",
   body,
 ) = {
@@ -156,6 +158,13 @@
       #html.style(read("style.css"))
     ]
     #html.elem("body")[
+      #html.elem("nav", attrs: (class: "resume-variants", "aria-label": "Other resume version"))[
+        #if variant == "backend" {
+          _html-link("../", "View systems-focused resume →")
+        } else {
+          _html-link("backend/", "View backend-focused resume →")
+        }
+      ]
       #html.elem("main", attrs: (class: "resume"))[
         #_html-header(
           author: author,
@@ -171,7 +180,7 @@
           contact-lines: contact-lines,
         )
         #body
-        #html.elem("a", attrs: (class: "pdf-link", href: "Aryan_Arora_Resume.pdf"))[Download PDF]
+        #html.elem("a", attrs: (class: "pdf-link", href: pdf-file))[Download PDF]
       ]
     ]
   ]
@@ -191,6 +200,8 @@
   personal-site: "",
   orcid: "",
   contact-lines: (),
+  pdf-file: "Aryan_Arora_Resume.pdf",
+  variant: "systems",
   accent-color: accent,
   font: "New Computer Modern",
   paper: "a4",
@@ -212,6 +223,8 @@
       personal-site: personal-site,
       orcid: orcid,
       contact-lines: contact-lines,
+      pdf-file: pdf-file,
+      variant: variant,
       lang: lang,
       body,
     )

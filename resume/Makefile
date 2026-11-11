@@ -11,17 +11,40 @@ DIST := dist
 PDF := $(DIST)/Aryan_Arora_Resume.pdf
 HTML := $(DIST)/index.html
 HEADERS := $(DIST)/_headers
+BACKEND_SRC := backend.typ
+BACKEND_DIST := $(DIST)/backend
+BACKEND_PDF := $(BACKEND_DIST)/Aryan_Arora_Backend_Resume.pdf
+BACKEND_HTML := $(BACKEND_DIST)/index.html
 
 .PHONY: all site pdf html tools serve clean check cloudflare
 .PHONY: FORCE
+.PHONY: backend backend-pdf backend-html backend-serve
 
 all: site
 
 # Cloudflare Pages build target.
 cloudflare: site
 
-# Both artifacts are generated from the same Typst source.
-site: pdf html
+# Build both resume variants for local previews and deployment.
+site: pdf html backend
+
+# The systems resume remains at the site root.
+backend: backend-pdf backend-html
+
+backend-pdf: tools $(BACKEND_PDF)
+
+$(BACKEND_PDF): FORCE $(BACKEND_SRC) $(TEMPLATE) $(STYLE)
+	@mkdir -p $(BACKEND_DIST)
+	$(TYPST) compile --input "phone=$$PHONE_NUMBER" --format pdf $(BACKEND_SRC) $(BACKEND_PDF)
+
+backend-html: tools $(BACKEND_HTML)
+
+$(BACKEND_HTML): FORCE $(BACKEND_SRC) $(TEMPLATE) $(STYLE)
+	@mkdir -p $(BACKEND_DIST)
+	$(TYPST) compile --input "phone=$$PHONE_NUMBER" --features html --format html $(BACKEND_SRC) $(BACKEND_HTML)
+
+backend-serve: site
+	$(PYTHON) -m http.server 8000 --directory $(DIST)
 
 tools:
 ifeq ($(TYPST),.tools/bin/typst)
